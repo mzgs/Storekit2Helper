@@ -21,6 +21,9 @@ class Storekit2Helper {
         periodUnit: product['periodUnit'],
         periodValue: product['periodValue'],
         periodTitle: product['periodTitle'],
+        introductoryOffer: product['introductoryOffer'],
+        introductoryOfferPeriod: product['introductoryOfferPeriod'],
+        isTrial: product['isTrial'],
       ));
     }
     return products;
@@ -66,6 +69,9 @@ class ProductDetail {
   final String periodUnit;
   final int periodValue;
   final String periodTitle;
+  final String introductoryOffer;
+  final String introductoryOfferPeriod;
+  final bool isTrial;
 
   ProductDetail(
       {required this.productId,
@@ -77,5 +83,8 @@ class ProductDetail {
       required this.json,
       required this.periodUnit,
       required this.periodValue,
-      required this.periodTitle});
+      required this.periodTitle,
+      required this.introductoryOffer,
+      required this.introductoryOfferPeriod,
+      required this.isTrial});
 }
