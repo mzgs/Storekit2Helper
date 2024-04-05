@@ -8,7 +8,7 @@ This project is IOS Storekit 2 implementation.
 
 ## USAGE
 
-```
+``` dart
 
   // get products
     var products = await Storekit2Helper.fetchProducts(
