@@ -5,6 +5,15 @@ import StoreKit
  
 
 public class Storekit2Plugin: NSObject, FlutterPlugin {
+    
+    let periodTitles = [
+        "Week": "Weekly",
+        "Month": "Monthly",
+        "Year": "Yearly"
+    ]
+
+    
+    
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "storekit2helper", binaryMessenger: registrar.messenger())
     let instance = Storekit2Plugin()
@@ -31,18 +40,26 @@ public class Storekit2Plugin: NSObject, FlutterPlugin {
                     // Convert products to a format that can be sent back to Flutter
                  let productDetails = products.map { product -> [String: Any] in
     
-                  return [
+                     var data = [
                       "productId": product.id,
                       "title": product.displayName,
                       "description": product.description,
                       "price": product.price,
                       "periodUnit": String(describing: product.subscription?.subscriptionPeriod.unit ?? Product.SubscriptionPeriod.Unit.day)  ,
                       "periodValue": product.subscription?.subscriptionPeriod.value ?? 0,
+                      "periodTitle": "",
                       "json":  String(data:  product.jsonRepresentation, encoding: .utf8) ?? "",
                       "localizedPrice": product.displayPrice,
                       "type": String(describing: product.type.rawValue),
                       
                   ]
+                     
+                     
+                 if let periodTitle = self.periodTitles[data["periodUnit"] as! String]{
+                     data["periodTitle"] = periodTitle
+                 }
+                     
+                     return data
               }
 
                     result(productDetails)

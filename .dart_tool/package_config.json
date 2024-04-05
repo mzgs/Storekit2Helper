@@ -39,7 +39,7 @@
     },
     {
       "name": "flutter",
-      "rootUri": "file:///opt/homebrew/Caskroom/flutter/3.13.8/flutter/packages/flutter",
+      "rootUri": "file:///Users/mustafa/fvm/versions/stable/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -51,7 +51,7 @@
     },
     {
       "name": "flutter_test",
-      "rootUri": "file:///opt/homebrew/Caskroom/flutter/3.13.8/flutter/packages/flutter_test",
+      "rootUri": "file:///Users/mustafa/fvm/versions/stable/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -111,7 +111,7 @@
     },
     {
       "name": "sky_engine",
-      "rootUri": "file:///opt/homebrew/Caskroom/flutter/3.13.8/flutter/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///Users/mustafa/fvm/versions/stable/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -170,7 +170,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-04-05T20:41:31.098946Z",
+  "generated": "2024-04-05T21:21:56.470235Z",
   "generator": "pub",
   "generatorVersion": "3.3.3"
 }

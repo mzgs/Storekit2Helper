@@ -20,6 +20,7 @@ class Storekit2Helper {
         json: product['json'],
         periodUnit: product['periodUnit'],
         periodValue: product['periodValue'],
+        periodTitle: product['periodTitle'],
       ));
     }
     return products;
@@ -64,6 +65,7 @@ class ProductDetail {
   final String json;
   final String periodUnit;
   final int periodValue;
+  final String periodTitle;
 
   ProductDetail(
       {required this.productId,
@@ -74,5 +76,6 @@ class ProductDetail {
       required this.type,
       required this.json,
       required this.periodUnit,
-      required this.periodValue});
+      required this.periodValue,
+      required this.periodTitle});
 }
