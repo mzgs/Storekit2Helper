@@ -3,6 +3,8 @@ description: "IOS Storekit2 Helper"
 version: 0.0.1
 homepage:
 
+# dart pub publish -f
+
 environment:
   sdk: '>=3.3.3 <4.0.0'
   flutter: '>=3.3.0'

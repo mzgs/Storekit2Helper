@@ -4,12 +4,42 @@ A new Flutter plugin project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+This project is IOS Storekit 2 implementation.
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## USAGE
+
+```
+
+  // get products
+    var products = await Storekit2Helper.fetchProducts(
+        ["app_weekly", "app_yearly", "app_lifetime"]);
+
+    for (var p in products) {
+      print(p.productId +
+          " - " +
+          p.periodUnit +
+          " " +
+          p.periodValue.toString() +
+          " " +
+          p.type);
+    }
+
+    // check user has active subscription
+    var hasActiveSubscription = await Storekit2Helper.hasActiveSubscription();
+
+    // Buy product by product id
+    Storekit2Helper.buyProduct("app_weekly",
+        (success, transaction, errorMessage) {
+      print(success);
+      print(errorMessage);
+      print(transaction);
+    });
+
+
+```
+
+ 
+
+
+ 
 

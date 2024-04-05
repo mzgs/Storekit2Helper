@@ -6,7 +6,7 @@ import StoreKit
 
 public class Storekit2Plugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "storekit2", binaryMessenger: registrar.messenger())
+    let channel = FlutterMethodChannel(name: "storekit2helper", binaryMessenger: registrar.messenger())
     let instance = Storekit2Plugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }

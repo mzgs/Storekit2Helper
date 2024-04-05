@@ -207,7 +207,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.1"
-  storekit2:
+  storekit2helper:
     dependency: "direct main"
     description:
       path: ".."
