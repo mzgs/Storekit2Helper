@@ -3,7 +3,7 @@
 # Run `pod lib lint storekit2.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'storekit2'
+  s.name             = 'storekit2helper'
   s.version          = '0.0.1'
   s.summary          = 'A new Flutter plugin project.'
   s.description      = <<-DESC
