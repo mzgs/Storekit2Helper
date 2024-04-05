@@ -51,13 +51,21 @@ public class Storekit2Plugin: NSObject, FlutterPlugin {
                       "json":  String(data:  product.jsonRepresentation, encoding: .utf8) ?? "",
                       "localizedPrice": product.displayPrice,
                       "type": String(describing: product.type.rawValue),
+                      "introductoryOffer": String(describing: product.subscription?.introductoryOffer?.paymentMode.rawValue ?? "") ,
                       
+                      "introductoryOfferPeriod":  String(describing: product.subscription?.introductoryOffer?.period.debugDescription ?? "") ,
+                      "isTrial": false
                   ]
-                     
+                      
                      
                  if let periodTitle = self.periodTitles[data["periodUnit"] as! String]{
                      data["periodTitle"] = periodTitle
                  }
+                 if(data["introductoryOffer"] as! String != ""){
+                     data["isTrial"] = true
+                 }
+                     
+                     print(data)
                      
                      return data
               }
