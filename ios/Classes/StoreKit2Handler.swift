@@ -3,11 +3,18 @@ import StoreKit
 
 
 class StoreKit2Handler {
-   static func fetchProducts(productIdentifiers: [String], completion: @escaping (Result<[Product], Error>) -> Void) {
+    static func fetchProducts(productIdentifiers: [String], completion: @escaping (Result<[Product], Error>) -> Void) {
         Task {
             do {
-                let products = try await Product.products(for: productIdentifiers)
-                completion(.success(products))
+                
+                let allProducts = try await Product.products(for: productIdentifiers)
+                 
+                let sortedProducts = productIdentifiers.compactMap { identifier in
+                    allProducts.first(where: { $0.id == identifier })
+                }
+              
+                completion(.success(sortedProducts))
+                
             } catch {
                 completion(.failure(error))
             }
@@ -15,20 +22,20 @@ class StoreKit2Handler {
     }
     
     static  func hasActiveSubscription() async -> Bool {
-         
+        
         for await verificationResult in Transaction.currentEntitlements {
             switch verificationResult {
                 
             case .verified(_):
                 return true
-        
+                
             case .unverified(_, _): break
                 
             }
         }
         return false
     }
-     
+    
     static func buyProduct(productId productID: String, completion: @escaping (Bool, Error?, Transaction?) -> Void) {
         Task {
             do {
@@ -45,14 +52,14 @@ class StoreKit2Handler {
                 // Attempt to purchase the product
                 let result = try await product.purchase()
                 
-               
+                
                 switch result {
                 case .success(let verification):
                     switch verification {
                     case .verified(let transaction ):
-                        print("Purchase Verified: \(transaction)")
+                       
                         await transaction.finish()
-                      
+                        
                         // Call completion handler indicating success
                         completion(true, nil,  transaction )
                     case .unverified:
@@ -64,7 +71,7 @@ class StoreKit2Handler {
                     break
                 case .userCancelled:
                     // User cancelled the purchase
-                     
+                    
                     completion(false, NSError(domain: "StoreKitError", code: -3, userInfo: [NSLocalizedDescriptionKey: "User cancelled"]),nil)
                 @unknown default:
                     // Handle unexpected cases
@@ -72,7 +79,7 @@ class StoreKit2Handler {
                 }
                 
             } catch {
-              
+                
                 completion(false, error,nil)
             }
         }
