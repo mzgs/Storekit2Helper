@@ -7,6 +7,7 @@ import StoreKit
 public class Storekit2Plugin: NSObject, FlutterPlugin {
     
     let periodTitles = [
+        "Day": "Weekly",
         "Week": "Weekly",
         "Month": "Monthly",
         "Year": "Yearly"
@@ -65,7 +66,6 @@ public class Storekit2Plugin: NSObject, FlutterPlugin {
                      data["isTrial"] = true
                  }
                      
-                     print(data)
                      
                      return data
               }
