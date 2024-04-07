@@ -3,16 +3,31 @@ import StoreKit
 
 
 class StoreKit2Handler {
+    
+    
+    
+       static func initialize()async{
+             
+            for await result in Transaction.updates {
+                if case .verified(let transaction) = result {
+                    
+                    await transaction.finish()
+                }
+            }
+            
+       }
+       
+    
     static func fetchProducts(productIdentifiers: [String], completion: @escaping (Result<[Product], Error>) -> Void) {
         Task {
             do {
                 
                 let allProducts = try await Product.products(for: productIdentifiers)
-                 
+                
                 let sortedProducts = productIdentifiers.compactMap { identifier in
                     allProducts.first(where: { $0.id == identifier })
                 }
-              
+                
                 completion(.success(sortedProducts))
                 
             } catch {
@@ -47,17 +62,16 @@ class StoreKit2Handler {
                     return
                 }
                 
-                print(products.count)
-                
+              
                 // Attempt to purchase the product
                 let result = try await product.purchase()
-                
+                 
                 
                 switch result {
                 case .success(let verification):
                     switch verification {
                     case .verified(let transaction ):
-                       
+                        
                         await transaction.finish()
                         
                         // Call completion handler indicating success
@@ -85,4 +99,32 @@ class StoreKit2Handler {
         }
     }
     
+    
+    
+
+    
+    
+   static func fetchPurchaseHistory() async ->   [String]  {
+   
+       var all : [String] = []
+     
+       for await verificationResult in Transaction.all {
+           switch verificationResult {
+               
+           case .verified(let transaction):
+             
+               all.append(String(data:  transaction.jsonRepresentation, encoding: .utf8) ?? "")
+                
+           case .unverified(_, _): break
+              
+               
+           }
+       }
+       return all
+    }
 }
+  
+
+   
+    
+

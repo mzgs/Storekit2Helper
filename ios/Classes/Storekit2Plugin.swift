@@ -25,6 +25,19 @@ public class Storekit2Plugin: NSObject, FlutterPlugin {
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     switch call.method {
         
+    case "initialize":
+        Task{
+            
+            await result(StoreKit2Handler.initialize())
+        }
+  
+        
+    case "fetchPurchaseHistory":
+        Task{
+            await result(StoreKit2Handler.fetchPurchaseHistory())
+        }
+      
+        
     case "hasActiveSubscription":
           Task {
               let hasSubscription =  await StoreKit2Handler.hasActiveSubscription()

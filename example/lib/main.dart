@@ -44,12 +44,9 @@ class _MyAppState extends State<MyApp> {
     var hasActiveSubscription = await Storekit2Helper.hasActiveSubscription();
 
     // Buy product by product id
-    Storekit2Helper.buyProduct("app_weekly",
-        (success, transaction, errorMessage) {
-      print(success);
-      print(errorMessage);
-      print(transaction);
-    });
+    Storekit2Helper.initialize();
+
+    print(await Storekit2Helper.hasActiveSubscription());
   }
 
   @override
@@ -62,6 +59,14 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: Text('Running on: '),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Storekit2Helper.buyProduct(
+                "app_yearly", (success, transaction, errorMessage) {});
+          },
+          tooltip: 'Increment',
+          child: const Icon(Icons.add),
+        ), // T
       ),
     );
   }

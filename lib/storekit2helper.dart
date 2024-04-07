@@ -3,6 +3,16 @@ import 'package:flutter/services.dart';
 class Storekit2Helper {
   static const MethodChannel _channel = MethodChannel('storekit2helper');
 
+  static Future initialize() async {
+    await _channel.invokeMethod('initialize');
+  }
+
+  static Future<List<String>> fetchPurchaseHistory() async {
+    List<dynamic> history = await _channel.invokeMethod('fetchPurchaseHistory');
+
+    return history.cast<String>();
+  }
+
   static Future<List<ProductDetail>> fetchProducts(
       List<String> productIDs) async {
     final List<dynamic> productList = await _channel
