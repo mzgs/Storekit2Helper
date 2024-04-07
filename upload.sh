@@ -28,5 +28,6 @@ git add .
 git commit -m "update to $new_version"
 git push
 
-echo "--------------------------------------\n"
+echo "--------------------------------------"
 echo "Version updated to $new_version"
+echo "--------------------------------------"
