@@ -18,7 +18,7 @@ new_version="${version_parts[0]}.${version_parts[1]}.$patch_version"
 # Replace the old version with the new version in the file
 sed -i '' "s/version: $current_version/version: $new_version/" $FILE_PATH
 
-echo "Version updated to $new_version"
+
 
 flutter pub get
 
@@ -27,3 +27,6 @@ dart pub publish -f
 git add .
 git commit -m "update to $new_version"
 git push
+
+echo "--------------------------------------\n"
+echo "Version updated to $new_version"
