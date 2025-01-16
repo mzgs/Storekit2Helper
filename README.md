@@ -34,7 +34,13 @@ final products = await Storekit2Helper.fetchProducts(productIDs: ["com.example.p
 ### Purchase Product
 Purchase a product:
 ```dart
-final transaction = await Storekit2Helper.buyProduct(productId: "com.example.product1");
+  Storekit2Helper.buyProduct("app_weekly",
+        (success, transaction, errorMessage) {
+      print(success);
+      print(errorMessage);
+      print(transaction);
+    });
+
 ```
 
 ### Check Active Subscription
@@ -104,8 +110,16 @@ class _StoreKitExampleState extends State<StoreKitExample> {
 
   Future<void> purchaseProduct(String productId) async {
     try {
-      final transaction = await Storekit2Helper.buyProduct(productId: productId);
-      print("Purchase Successful: $transaction");
+     
+
+  Storekit2Helper.buyProduct(productId,
+        (success, transaction, errorMessage) {
+      print(success);
+      print(errorMessage);
+      print(transaction);
+    });
+
+
     } catch (e) {
       print("Purchase Failed: $e");
     }
