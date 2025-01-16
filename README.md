@@ -34,7 +34,7 @@ final products = await Storekit2Helper.fetchProducts(productIDs: ["com.example.p
 ### Purchase Product
 Purchase a product:
 ```dart
-  Storekit2Helper.buyProduct("app_weekly",
+  Storekit2Helper.buyProduct(productID:"app_weekly",
         (success, transaction, errorMessage) {
       print(success);
       print(errorMessage);
